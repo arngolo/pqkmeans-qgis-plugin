@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/pqkmeans_clustering" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
