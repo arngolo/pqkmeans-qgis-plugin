@@ -3,7 +3,7 @@
 # This file should be included when you package your plugin.# Mandatory items:
 
 [general]
-name=pqkmeans
+name=pqkmeans-qgistoolbox
 qgisMinimumVersion=3.0
 description=This clustering algorithm is a quantized version of the K-Means algorithm that is memory and computationaly more efficient.
 version=0.1
@@ -13,7 +13,7 @@ email=arngolo@outlook.com
 about=This clustering algorithm is a quantized version of the K-Means algorithm that is memory and computationaly more efficient.
 
 tracker=http://bugs
-repository=http://repo
+repository=https://github.com/arngolo/pqkmeans-qgistoolbox
 # End of mandatory metadata
 
 # Recommended items:
