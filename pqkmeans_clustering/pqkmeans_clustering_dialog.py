@@ -27,11 +27,8 @@ import os
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
 import time
-tstart=time.perf_counter()
-print(f"{tstart/60} min")
 import numpy as np
 import rasterio
-import matplotlib.pyplot as plt
 import pandas as pd
 import pqkmeans
 
@@ -53,6 +50,7 @@ class PqkMeansDialog(QtWidgets.QDialog, FORM_CLASS):
         # OK/cancel button object name is button_box and its class is QDialogButtonBox.
         # to check for the event that triggers one or another, search from the Qt5 website. (event is button_box.accepted/rejected)
         self.button_box.accepted.connect(self.pqkmeans_clustering)
+        self.projections.addItems(["utm", "EPSG"])
 
     def pqkmeans_clustering(self):
         # input_raster = self.InputRaster
@@ -63,8 +61,7 @@ class PqkMeansDialog(QtWidgets.QDialog, FORM_CLASS):
         k = self.KParam.value()
         sample_size = self.SampleSize.value()
         Ks = self.KsParam.value()
-        # proj = self.proj.value()
-        proj = "utm"
+        proj = self.projections
         epsg_value = self.EPSGValue.value()
         ellps = self.ellipsoid.value()
         datum = self.Datum.value()
@@ -78,10 +75,13 @@ class PqkMeansDialog(QtWidgets.QDialog, FORM_CLASS):
         print('k param: ', k)
         print('sample size: ', sample_size)
         print('ks param: ', Ks)
-        # print('projection: ', proj)
+        print('projection: ', proj)
         print('EPSG value: ', epsg_value)
         print('ellipsoid: ', ellps)
         print('datum: ', datum)
+
+        tstart=time.perf_counter()
+        print(f"{tstart/60} min")
 
 #         src = rasterio.open(input_raster)
 #         #raster_info = np.ma.masked_values(src.read(1), src.nodata)
