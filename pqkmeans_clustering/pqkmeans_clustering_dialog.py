@@ -50,27 +50,27 @@ class PqkMeansDialog(QtWidgets.QDialog, FORM_CLASS):
         # OK/cancel button object name is button_box and its class is QDialogButtonBox.
         # to check for the event that triggers one or another, search from the Qt5 website. (event is button_box.accepted/rejected)
         self.button_box.accepted.connect(self.pqkmeans_clustering)
+        self.outputButton.clicked.connect(self.select_output_file)
         self.projections.addItems(["utm", "EPSG"])
 
     def pqkmeans_clustering(self):
-        # input_raster = self.InputRaster
-        input_raster = r"C:/Users/arngo/Desktop/PYTHON/FLAASH_NDBI_MEI_VIGS_DBI_QzCa_VV_VH_10m.tif"
-        # output_raster = self.OutputRaster
-        output_raster = r"C:/Users/arngo/Desktop/PYTHON/output.tif"
+        input_raster = self.inputRaster.currentLayer()
+        input_raster = input_raster.source() # gives the path of the raster
+        output_directory = self.outputDir.text()
+        output_raster_name = self.outputRaster.text()
+        # output_raster = r"C:/Users/arngo/Desktop/PYTHON/output.tif"
+        output_raster = os.path.join(output_directory, output_raster_name)
         num_subdim = self.numSubdim.value()
         k = self.KParam.value()
         sample_size = self.SampleSize.value()
         Ks = self.KsParam.value()
-        proj = self.projections
+        proj = self.projections.currentText()
         epsg_value = self.EPSGValue.value()
         ellps = self.ellipsoid.value()
         datum = self.Datum.value()
 
-        # print("pqkmeans function ok")
-        print(input_raster)
-        print(output_raster)
-        # print(inspect.getmembers(input_raster, predicate=inspect.isfunction))
-        # print(inspect.getmembers(input_raster))
+        print("input raster: ", input_raster)
+        print("output raster: ", output_raster)
         print('num subdim: ', num_subdim)
         print('k param: ', k)
         print('sample size: ', sample_size)
@@ -161,3 +161,12 @@ class PqkMeansDialog(QtWidgets.QDialog, FORM_CLASS):
 #         print(f"Finished writing clustering in {writing_end/60 - writing_start/60} min")
 #         print(f"Total pqkmeans time: {clustering_end_time/60 - encoder_start_time/60} min")
 #         print(f"Total processing time: {writing_end/60 - tstart/60} min")
+        
+    # def select_output_file(self):
+    #     filename, _filter = QtWidgets.QfileDialog.getSaveFileNAme(self.outputButton, "select output file")
+    #     self.outputRaster.setText(filename)
+
+    def select_output_file(self):
+        dialog = QtWidgets.QFileDialog()
+        folder_path = dialog.getExistingDirectory(None, "Select Folder")
+        self.outputDir.setText(folder_path)
