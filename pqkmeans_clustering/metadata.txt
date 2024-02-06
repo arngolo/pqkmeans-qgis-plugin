@@ -12,7 +12,7 @@ email=arngolo@outlook.com
 
 about=This clustering algorithm is a quantized version of the K-Means algorithm that is memory and computationaly more efficient.
 
-tracker=http://bugs
+tracker=https://github.com/arngolo/pqkmeans-qgis-plugin/issues
 repository=https://github.com/arngolo/pqkmeans-qgis-plugin
 # End of mandatory metadata
 
