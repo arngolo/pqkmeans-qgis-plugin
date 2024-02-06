@@ -23,7 +23,7 @@ To install pqkmeans_clustering plugin in QGIS, you need to install the reloader 
      ```set PATH=<dir_output>\apps\Cmake\bin;%PATH%```
 
 
- - Reload the pluging using the reloader plugin that you previiously installed
+ - Reload the pluging using the reloader plugin that you previously installed
  - Open the plugin. The UI will look as bellow:
  <kbd> <img src="plugin_gui.png" /> </kbd>
 

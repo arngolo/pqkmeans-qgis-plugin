@@ -10,10 +10,17 @@ version=0.1
 author=armstrong ngolo
 email=arngolo@outlook.com
 
-about=This clustering algorithm is a quantized version of the K-Means algorithm that is memory and computationaly more efficient.
+about=The instractions for instalation of external dependencies can be found in the main page (README.md file) of the repository: https://github.com/arngolo/pqkmeans-qgis-plugin.
 
 tracker=https://github.com/arngolo/pqkmeans-qgis-plugin/issues
 repository=https://github.com/arngolo/pqkmeans-qgis-plugin
+
+[license]
+name = MIT License
+version = N/A
+copyright = Copyright (c) 2024 Armstrong Ngolo
+terms = https://opensource.org/licenses/MIT
+
 # End of mandatory metadata
 
 # Recommended items:
@@ -23,7 +30,7 @@ hasProcessingProvider=no
 # changelog=
 
 # Tags are comma separated with spaces allowed
-tags=analysis, raster, remote sensing
+tags=pqkmeans, clustering, kmeans, remote sensing, raster, analysis
 
 homepage=http://homepage
 category=Plugins
@@ -37,7 +44,7 @@ deprecated=False
 # Since QGIS 3.8, a comma separated list of plugins to be installed
 # (or upgraded) can be specified.
 # Check the documentation for more information.
-# plugin_dependencies=Plugin Reloader
+plugin_dependencies=Plugin Reloader
 
 Category of the plugin: Raster, Vector, Database or Web
 category=Raster
