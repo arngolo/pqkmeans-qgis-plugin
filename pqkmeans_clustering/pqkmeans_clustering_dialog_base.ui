@@ -28,6 +28,15 @@
        <property name="editable">
         <bool>true</bool>
        </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+       </property>
+       <property name="minimumContentsLength">
+        <number>0</number>
+       </property>
+       <property name="allowEmptyLayer">
+        <bool>false</bool>
+       </property>
       </widget>
      </item>
     </layout>
@@ -72,7 +81,7 @@
     </layout>
    </item>
    <item row="3" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_10">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_8">
        <item>
@@ -112,25 +121,25 @@
     </layout>
    </item>
    <item row="4" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_7">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLabel" name="label_6">
-       <property name="text">
-        <string>Sample Size (for quantization)</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Sample Size (for quantization)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QgsFilterLineEdit" name="SampleSize">
+         <property name="qgisRelation" stdset="0">
+          <string notr="true"/>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
-     <item>
-      <widget class="QgsFilterLineEdit" name="SampleSize">
-       <property name="qgisRelation" stdset="0">
-        <string notr="true"/>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="5" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
@@ -152,85 +161,9 @@
        </item>
       </layout>
      </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
-       <item>
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>proj</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="projections">
-         <property name="editable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
     </layout>
    </item>
-   <item row="6" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QLabel" name="label_8">
-       <property name="text">
-        <string>EPSG Value (required if proj is EPSG)</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QgsFilterLineEdit" name="EPSGValue">
-       <property name="qgisRelation" stdset="0">
-        <string notr="true"/>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="7" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_13">
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLabel" name="label_9">
-         <property name="text">
-          <string>ellps</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QgsFilterLineEdit" name="ellipsoid">
-         <property name="qgisRelation" stdset="0">
-          <string notr="true"/>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QLabel" name="label_10">
-         <property name="text">
-          <string>Datum</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QgsFilterLineEdit" name="Datum">
-         <property name="qgisRelation" stdset="0">
-          <string notr="true"/>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </item>
-   <item row="8" column="0">
+   <item row="5" column="0">
     <widget class="QDialogButtonBox" name="button_box">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
