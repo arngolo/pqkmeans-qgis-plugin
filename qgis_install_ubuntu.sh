@@ -13,4 +13,4 @@ touch /etc/apt/sources.list.d/qgis.sources
 cat qgis.source | sudo tee /etc/apt/sources.list.d/qgis.sources >/dev/null
 sudo apt update
 sudo apt --yes install qgis qgis-plugin-grass
-# sudo apt install python3-pip
+sudo apt install python3-pip

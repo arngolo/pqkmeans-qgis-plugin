@@ -9,7 +9,9 @@ To install pqkmeans_clustering plugin in QGIS follow the steps bellow:
 
 ## WINDOWS requirements
 - Install the dependencies by running the requirements.txt file (use the osgeo4w terminal for windows).
-```pip install -r requirements.txt```
+```
+pip install -r requirements.txt
+```
 - Install cmake: pqkmeans library requires cmake:
 
   - If cmake is not available from OSGEOW4 shell, check from the default command prompt.
@@ -23,33 +25,47 @@ To install pqkmeans_clustering plugin in QGIS follow the steps bellow:
 
   - Once the installation is finished, from the OSGEO4W shell add cmake path to PATH!!!:
 
-     ```set PATH=<dir_output>\apps\Cmake\bin;%PATH%```
+     ```
+     set PATH=<dir_output>\apps\Cmake\bin;%PATH%
+     ```
 
 ## MAC requirements
 
 ### One of the requirements to successfully install pqkmeans library is cmake:
 
-```brew install cmake```
+```
+brew install cmake
+```
 
 You may need to add it to path (locate it and add to path):
-```export PATH="/usr/local/Cellar/cmake/3.28.3/bin:$PATH```
+```
+export PATH="/usr/local/Cellar/cmake/3.28.3/bin:$PATH
+```
 
 Upgrade necessary libraries:
-```<qgis_path>/python3 -m pip install --upgrade pip setuptools wheel```
+```
+<qgis_path>/python3 -m pip install --upgrade pip setuptools wheel
+```
 
 In Mac, QGIS python environment is not activated using the activate command. Instead, locate the python associated with it and add `-m` flag followed by `pip install` command.
 
 When QGIS is installed from .dmg file (recommended), the python directory is `/Applications/QGIS.app/Contents/MacOS/bin/python3`. and you can export to `PATH` as:
 
-```export PATH="/Applications/QGIS.app/Contents/MacOS/include/python3.9:$PATH"```
+```
+export PATH="/Applications/QGIS.app/Contents/MacOS/include/python3.9:$PATH"
+```
 
 Install python libraries by running the command bellow:
-```<qgis_path>/python3 -m pip install -r requirements.txt```
+```
+<qgis_path>/python3 -m pip install -r requirements.txt
+```
 
 ## LINUX/UBUNTU requirements
 ### You may need to install QGIS first:
 
-```./qgis_install_ubuntu.sh```
+```
+./qgis_install_ubuntu.sh
+```
 
 Open qgis, and check the python path from python console: 
 
@@ -57,9 +73,13 @@ Open qgis, and check the python path from python console:
 
 You should get the python path for qgis and add it to system PATH:
 
-```export PATH=”$PATH:<path_to_qgis_python>”```
+```
+export PATH=”$PATH:<path_to_qgis_python>”
+```
 
-```pip install -r requirements_ubuntu.txt```
+```
+pip install -r requirements_ubuntu.txt
+```
 
 **Note:** In ubuntu system, the plugins directoory is different from windows. From qgis python console run sys.path to check the plugins directory.  It should be somewhere like: `/home/ubuntu/.local/share/QGIS/QGIS3/profiles/default/python/plugins`. 
 
