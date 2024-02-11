@@ -10,7 +10,7 @@ sudo mkdir -m755 -p /etc/apt/keyrings # QGIS Signing Key. no need if ubuntu 22 o
 sudo wget -O /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
 
 touch /etc/apt/sources.list.d/qgis.sources
-cat qgis.sources > /etc/apt/sources.list.d/qgis.sources
+cat qgis.source | sudo tee /etc/apt/sources.list.d/qgis.sources >/dev/null
 sudo apt update
 sudo apt --yes install qgis qgis-plugin-grass
 # sudo apt install python3-pip
