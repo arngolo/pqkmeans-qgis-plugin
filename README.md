@@ -27,6 +27,25 @@ To install pqkmeans_clustering plugin in QGIS follow the steps bellow:
 
 ## MAC requirements
 
+### One of the requirements to successfully install pqkmeans library is cmake:
+
+```brew install cmake```
+
+You may need to add it to path (locate it and add to path):
+```export PATH="/usr/local/Cellar/cmake/3.28.3/bin:$PATH```
+
+Upgrade necessary libraries:
+```<qgis_path>/python3 -m pip install --upgrade pip setuptools wheel```
+
+In Mac, QGIS python environment is not activated using the activate command. Instead, locate the python associated with it and add `-m` flag followed by `pip install` command.
+
+When QGIS is installed from .dmg file (recommended), the python directory is `/Applications/QGIS.app/Contents/MacOS/bin/python3`. and you can export to `PATH` as:
+
+```export PATH="/Applications/QGIS.app/Contents/MacOS/include/python3.9:$PATH"```
+
+Install python libraries by running the command bellow:
+```<qgis_path>/python3 -m pip install -r requirements.txt```
+
 ## LINUX/UBUNTU requirements
 ### You may need to install QGIS first:
 
