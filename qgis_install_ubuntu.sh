@@ -1,5 +1,5 @@
 
-sudo snap install --yes cmake
+sudo snap install cmake --classic
 sudo apt-get install --yes build-essential # gcc, g++
 
 # install QGIS
