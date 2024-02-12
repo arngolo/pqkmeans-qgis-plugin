@@ -7,6 +7,14 @@ To install pqkmeans_clustering plugin in QGIS follow the steps bellow:
 - Open the plugin. The UI will look as bellow:
 <kbd> <img src="plugin_gui.png" /> </kbd>
 
+- **k:** as you wish for the number of clusters
+
+- **num_of_subdimension (M):**  The  number of subdimensions (from the input nD image) for quantization. The higher the subdimension the slower the algorithm.
+
+- **Ks:**  represents the maximum digital number. By default it is 256 that corresponds to 8 bits.
+
+- **sample_size:** The number of pixels you select for quantization. (Good results where achieved with 9.5% of the total number of pixels (Ngolo and Watanabe, 2022)).
+
 ## WINDOWS requirements
 - Install the dependencies by running the requirements.txt file (use the osgeo4w terminal for windows).
 ```
@@ -132,5 +140,11 @@ pip install -r requirements_ubuntu.txt
 | OS                       |  Ubuntu 20.04                          |
 
 ## TO-DO
-- update Readme
 - publish the plugin
+
+### References:
+
+Matsui, Y., K. Ogaki, T. Yamasaki, and K. Aizawa 2017.“PQk-means: Billion-scale Clustering for Product-quantized Codes.” Paper presented at the proceedings of the ACM International Conference on Multimedia, Mountain View, California, USA, 23–27 October 1725-1733. https://arxiv.org/abs/1709.03708v1
+
+Ngolo, A.M.E and T. Watanabe 2022. “Integrating geographical information systems, remote sensing, and machine learning techniques to monitor urban expansion: an application to Luanda, Angola.” Geo-spatial Information
+Science 26 (3): 446–464. https://doi.org/10.1080/10095020.2022.2066574.

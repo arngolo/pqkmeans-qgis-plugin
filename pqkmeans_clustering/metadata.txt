@@ -11,6 +11,7 @@ author=armstrong ngolo
 email=arngolo@outlook.com
 
 about=The instractions for instalation of external dependencies can be found in the main page (README.md file) of the repository: https://github.com/arngolo/pqkmeans-qgis-plugin.
+Test data can be found from the following repository by http://dx.doi.org/10.17632/hkfxnm2xpk.1. After uncompressing the file, Use the .tif images located in RESEARCH_Angolo_data/RESEARCH_Angolo/PYTHON (both having 7 bands)
 
 tracker=https://github.com/arngolo/pqkmeans-qgis-plugin/issues
 repository=https://github.com/arngolo/pqkmeans-qgis-plugin
