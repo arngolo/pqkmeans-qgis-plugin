@@ -26,11 +26,9 @@ import os
 
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
-import time
-import numpy as np
-import rasterio
-import pandas as pd
-import pqkmeans
+from qgis.core import QgsRasterLayer, QgsProject
+from qgis.utils import iface
+from .scripts.pqkmeansClustering import PQKMeans
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
@@ -41,130 +39,41 @@ class PqkMeansDialog(QtWidgets.QDialog, FORM_CLASS):
     def __init__(self, parent=None):
         """Constructor."""
         super(PqkMeansDialog, self).__init__(parent)
-        # Set up the user interface from Designer through FORM_CLASS.
-        # After self.setupUi() you can access any designer object by doing
-        # self.<objectname>, and you can use autoconnect slots - see
-        # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
-        # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
         # OK/cancel button object name is button_box and its class is QDialogButtonBox.
         # to check for the event that triggers one or another, search from the Qt5 website. (event is button_box.accepted/rejected)
         self.button_box.accepted.connect(self.pqkmeans_clustering)
         self.outputButton.clicked.connect(self.select_output_file)
-        self.projections.addItems(["utm", "EPSG"])
+        # self.projections.addItems(["utm", "EPSG", "latlong", "longlat", "aea"])
 
     def pqkmeans_clustering(self):
         input_raster = self.inputRaster.currentLayer()
         input_raster = input_raster.source() # gives the path of the raster
         output_directory = self.outputDir.text()
         output_raster_name = self.outputRaster.text()
-        # output_raster = r"C:/Users/arngo/Desktop/PYTHON/output.tif"
         output_raster = os.path.join(output_directory, output_raster_name)
-        num_subdim = self.numSubdim.value()
-        k = self.KParam.value()
-        sample_size = self.SampleSize.value()
-        Ks = self.KsParam.value()
-        proj = self.projections.currentText()
-        epsg_value = self.EPSGValue.value()
-        ellps = self.ellipsoid.value()
-        datum = self.Datum.value()
+        num_subdim = int(self.numSubdim.value())
+        k = int(self.KParam.value())
+        sample_size = int(self.SampleSize.value())
+        Ks = int(self.KsParam.value())
+        # proj = self.projections.currentText()
+        # epsg_value = self.EPSGValue.value()
+        # ellps = self.ellipsoid.value()
+        # datum = self.Datum.value()
 
-        print("input raster: ", input_raster)
-        print("output raster: ", output_raster)
-        print('num subdim: ', num_subdim)
-        print('k param: ', k)
-        print('sample size: ', sample_size)
-        print('ks param: ', Ks)
-        print('projection: ', proj)
-        print('EPSG value: ', epsg_value)
-        print('ellipsoid: ', ellps)
-        print('datum: ', datum)
+        PQKMeans(input_raster, output_raster, k, num_subdim, Ks, sample_size)
 
-        tstart=time.perf_counter()
-        print(f"{tstart/60} min")
+        #LOAD RASTER INTO QGIS
+        result_layer = QgsRasterLayer(output_raster, "Result Raster")
+        if result_layer.isValid():
+            # Add the layer to the map canvas
+            QgsProject.instance().addMapLayer(result_layer)
+            print("Raster layer added to the map canvas.")
+        else:
+            print("Error loading the raster layer.")
 
-#         src = rasterio.open(input_raster)
-#         #raster_info = np.ma.masked_values(src.read(1), src.nodata)
-#         num_bands = len(src.indexes)
-#         bands={}
-#         for i in range(num_bands):
-#             band = np.ma.masked_values(src.read(i+1), src.nodata)
-
-#             ###Based on previous failures, the author recommends to use arrays instead of data from pandas in order to have (input values, ndimension):
-
-
-#             bands["band_" + str(i+1)] = band[band==band]
-
-#         #data = pd.DataFrame.from_dict(data)
-
-#         #for calculations using algorithms we have to drop NaN values. previous step!!!!
-#         t2=time.perf_counter()
-#         print(f"Bands into dictionary finished in {t2/60 - tstart/60} min")
-
-#         data = pd.DataFrame.from_dict(bands)
-#         t3=time.perf_counter()
-#         print(f"Bands into dataframe finished in {t3/60 - t2/60} min")
-#         data2= data.dropna()
-
-#         X = np.asarray((data2[list(data)]))
-#         print(f"Number of bytes: {X.nbytes} ({X.nbytes/1000000000} Gb)")
-#         print(f"Array shape: (n of pixels per band, n of bands){X.shape}")
-#         ####Train the encoder!!!
-#         ####Because we have 12 bands (12D input), our num_subdim or M has to be multiple of the input dimension:
-#         encoder_start_time=time.perf_counter()
-#         print("Encoding.....")
-#         encoder = pqkmeans.encoder.PQEncoder(num_subdim=num_subdim, Ks=Ks)
-#         encoder.fit(X[:sample_size])
-#         X_pqcode = encoder.transform(X)
-#         encoder_end_time=time.perf_counter()
-#         print(f"Finished encoding in {encoder_end_time/60 - encoder_start_time/60} min")
-#         print(f"Pqcode shape: {X_pqcode.shape}")
-
-
-#         ####As can be seen, the reconstructed vectors are similar to the original one.
-#         ###It allows you to compress input vectors to PQ-codes, and store the PQ-codes only (X2_pqcode) In a large-scale data processing scenario
-#         np.save("pqcode.npy", X_pqcode)
-#         ####Clustering
-#         clustering_start_time=time.perf_counter()
-#         pqkmean = pqkmeans.clustering.PQKMeans(encoder=encoder, k=k)
-#         Labels = pqkmean.fit_predict(X_pqcode)
-#         clustering_end_time=time.perf_counter()
-#         print(f"Finished clustering in {clustering_end_time/60 - clustering_start_time/60} min")
-
-#         #the array of the KMeans result does not contain the NaN values, so it is impossible to reshape to its original shape(raster). the nextstep is to find a way to add the Nan values (then nodata) to the labels. Maybe a for loop!!!
-#         print("Writing clustering result into image.....")
-#         writing_start=time.perf_counter()
-
-#         Z= pd.DataFrame({"Labels":Labels})
-#         Z_Reindexed = Z.set_index(data2.index)
-#         data["Label"] = Z_Reindexed["Labels"]
-#         Result = pd.to_numeric(data["Label"], downcast = "float" )
-#         im = Result.values
-#         im = np.reshape(Result.values, (band.shape[0],  band.shape[1] ))
-#         ##### After, Save
-
-#         # proj: "utm", "latlong, "EPSG:32618", "longlat +ellps=WGS84 +datum=WGS84", "aea"
-# ##        if (proj == "longlat") or ((proj == "latlong")):
-# ##                proj = proj + " +ellps=" + ellps + " +datum=" +datum
-# ##        elif proj == "EPSG":
-# ##                proj = proj + ": " + epsg_value
-#         if proj == "EPSG":
-#                 proj = proj + ": " + epsg_value + " +ellps=" + ellps + " +datum=" +datum
-#         else:
-#                 proj = proj + " +ellps=" + ellps + " +datum=" +datum
-#         print("CRS is: +proj = " + proj)
-
-#         PQKMean_output = rasterio.open(output_raster, "w", driver = "GTiff", height =  band.shape[0], width =  band.shape[1], dtype =  band.dtype, count = 1, nodata = src.nodata, crs = "+proj = " + proj, transform =  src.transform)
-#         PQKMean_output.write(im, 1)
-#         PQKMean_output.close()
-#         writing_end=time.perf_counter()
-#         print(f"Finished writing clustering in {writing_end/60 - writing_start/60} min")
-#         print(f"Total pqkmeans time: {clustering_end_time/60 - encoder_start_time/60} min")
-#         print(f"Total processing time: {writing_end/60 - tstart/60} min")
-        
-    # def select_output_file(self):
-    #     filename, _filter = QtWidgets.QfileDialog.getSaveFileNAme(self.outputButton, "select output file")
-    #     self.outputRaster.setText(filename)
+        # Refresh the map canvas to see the changes
+        iface.mapCanvas().refresh()
 
     def select_output_file(self):
         dialog = QtWidgets.QFileDialog()
