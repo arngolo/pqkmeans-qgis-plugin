@@ -1,10 +1,11 @@
-import time
+import time, os
 import numpy as np
 import rasterio
 import pandas as pd
 import pqkmeans
 
-def PQKMeans(input_raster, output_raster, k, num_subdim, Ks, sample_size):
+def PQKMeans(input_raster, output_directory, output_raster, k, num_subdim, Ks, sample_size):
+
     tstart=time.perf_counter()
     print(f"{tstart/60} min")
 
@@ -41,7 +42,8 @@ def PQKMeans(input_raster, output_raster, k, num_subdim, Ks, sample_size):
     print(f"Finished encoding in {encoder_end_time/60 - encoder_start_time/60} min")
     print(f"Pqcode shape: {X_pqcode.shape}")
 
-    np.save("pqcode.npy", X_pqcode)
+    np.save(os.path.join(output_directory, "pqcode.npy"), X_pqcode)
+    print(os.path.join(output_directory, "pqcode.npy"))
     ####Clustering
     clustering_start_time=time.perf_counter()
     pqkmean = pqkmeans.clustering.PQKMeans(encoder=encoder, k=k)

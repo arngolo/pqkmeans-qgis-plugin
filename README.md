@@ -39,7 +39,38 @@ pip install -r requirements.txt
      set PATH=<dir_output>\apps\Cmake\bin;%PATH%
      ```
 
-## MAC requirements
+## MACOS requirements
+One of the requirements for pqkmeans is cmake:
+
+Make sure you have Xcode installed (Xcode has the necessary compilers) and add to path as (`try not adding to path!`):
+```
+export PATH="/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH"
+```
+
+```
+brew install cmake
+```
+
+You may need (`try without adding!`) to add it to path (despite being in `/usr/local/Cellar/cmake/3.28.3/bin` look for it in /usr/local/opt):
+```
+export PATH="/usr/local/opt/cmake/bin:$PATH"
+```
+
+In MACOS, QGIS python environment is not activated using the activate command. Instead, locate the python associated with it (from QGIS python console: `sys.executable`) and add -m flag followed by pip install command.
+
+```
+/Applications/QGIS.app/Contents/MacOS/bin/python3 -m pip install <library>
+```
+
+You may need (`try without adding!`) to add it to path:
+```
+export PATH="/Applications/QGIS.app/Contents/MacOS/bin:$PATH"
+```
+
+Plugins are located in a location similar to:
+`/Users/<user_name>/Library/Application Support/QGIS/QGIS3/profiles/default/python/plugins`
+
+**Note:** Plugins directory is not initially created unless you previously installed a plugin from QGIS. Create the directory yourself if necessary.
 
 ### One of the requirements to successfully install pqkmeans library is cmake:
 
