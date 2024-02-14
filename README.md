@@ -179,5 +179,5 @@ Matsui, Y., K. Ogaki, T. Yamasaki, and K. Aizawa 2017.“PQk-means: Billion-scal
 Ngolo, A.M.E and T. Watanabe 2022. “Integrating geographical information systems, remote sensing, and machine learning techniques to monitor urban expansion: an application to Luanda, Angola.” Geo-spatial Information
 Science 26 (3): 446–464. https://doi.org/10.1080/10095020.2022.2066574.
 
-## TO-DO
-- publish the plugin
+### CITATION
+[![DOI](https://zenodo.org/badge/750484636.svg)](https://zenodo.org/doi/10.5281/zenodo.10655926)
