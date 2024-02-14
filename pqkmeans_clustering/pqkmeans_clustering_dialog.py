@@ -23,7 +23,6 @@
 """
 
 import os
-
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
 from qgis.core import QgsRasterLayer, QgsProject
@@ -61,10 +60,10 @@ class PqkMeansDialog(QtWidgets.QDialog, FORM_CLASS):
         # ellps = self.ellipsoid.value()
         # datum = self.Datum.value()
 
-        PQKMeans(input_raster, output_raster, k, num_subdim, Ks, sample_size)
+        PQKMeans(input_raster, output_directory, output_raster, k, num_subdim, Ks, sample_size)
 
         #LOAD RASTER INTO QGIS
-        result_layer = QgsRasterLayer(output_raster, "Result Raster")
+        result_layer = QgsRasterLayer(output_raster, output_raster_name)
         if result_layer.isValid():
             # Add the layer to the map canvas
             QgsProject.instance().addMapLayer(result_layer)
