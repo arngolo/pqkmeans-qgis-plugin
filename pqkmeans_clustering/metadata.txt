@@ -27,7 +27,7 @@ hasProcessingProvider=no
 # Tags are comma separated with spaces allowed
 tags=pqkmeans, clustering, kmeans, remote sensing, raster, analysis
 
-homepage=http://homepage
+homepage=https://github.com/arngolo/pqkmeans-qgis-plugin
 category=Plugins
 icon=icon.png
 # experimental flag
