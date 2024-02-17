@@ -17,6 +17,9 @@ To install pqkmeans_clustering plugin in QGIS follow the steps bellow:
 
 - **sample_size:** The number of pixels you select for quantization. (Good results where achieved with 9.5% of the total number of pixels (Ngolo and Watanabe, 2022)).
 
+### Test data
+Test data is available [HERE](repository http://dx.doi.org/10.17632/hkfxnm2xpk.1). After uncompressing the file, Use the .tif images located in `RESEARCH_Angolo_data/RESEARCH_Angolo/PYTHON` directory (both having 7 bands)
+
 ## WINDOWS requirements
 - Install the dependencies by running the requirements.txt file (use the osgeo4w terminal for windows).
 ```
