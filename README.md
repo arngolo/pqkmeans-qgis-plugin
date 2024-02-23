@@ -17,6 +17,9 @@ To install pqkmeans_clustering plugin in QGIS follow the steps bellow:
 
 - **sample_size:** The number of pixels you select for quantization. (Good results where achieved with 9.5% of the total number of pixels (Ngolo and Watanabe, 2022)).
 
+### Test data
+Test data is available [HERE](repository http://dx.doi.org/10.17632/hkfxnm2xpk.1). After uncompressing the file, Use the .tif images located in `RESEARCH_Angolo_data/RESEARCH_Angolo/PYTHON` directory (both having 7 bands)
+
 ## WINDOWS requirements
 - Install the dependencies by running the requirements.txt file (use the osgeo4w terminal for windows).
 ```
@@ -140,14 +143,36 @@ pip install -r requirements_ubuntu.txt
 | PDAL                     |  2.6.0                 |
 | PostgreSQL client        |  15.2                  |
 | SpatiaLite               |  5.1.0                 |
+| QWT                      |  6.1.6                 |
+| QScintilla2              |  2.13.4                |
 | rasterio                 |  1.3.9                 |
 | pqkmeans                 |  1.0.6                 |
 | cmake                    |  3.28.2                |
-| QWT                      |  6.1.6                 |
-| QScintilla2              |  2.13.4                |
 | OS                       |  Windows 10, 2009      |
 
 ## MAC Development environment
+|  Software/library        |  version               |
+|:------------------------:|:----------------------:|
+| QGIS                     |  3.34.3-Prizren        |
+| Qt                       |  5.15.2                |
+| Python                   |  3.9.5                 |
+| GDAL/OGR                 |  3.3.2                 |
+| PROJ                     |  8.1.1                 |
+| EPSG registry database   |  v10.028 (2021-07-07)  |
+| GEOS                     |  3.9.1-CAPI-1.14.2     |
+| SQLite                   |  3.35.2                |
+| PDAL                     |  2.3.0                 |
+| PostgreSQL client        |  unknown               |
+| SpatiaLite               |  5.0.1                 |
+| QWT                      |  6.1.6                 |
+| QScintilla2              |  2.11.5                |
+| rasterio                 |  1.1.5                 |
+| pqkmeans                 |  1.0.6                 |
+| cmake                    |  3.28.3                |
+| xcode                    |  15.2                  |
+| clang                    |  macOS 15.0.0          |
+| OS                       |  macOS 14.3            |
+| MAC architecture         |  x86_64                |
 
 ## UBUNTU Development environment
 |  Software/library        |  version                               |
@@ -163,13 +188,13 @@ pip install -r requirements_ubuntu.txt
 | PDAL                     |  2.0.1                                 |
 | PostgreSQL client        |  12.12 (ubuntu 12.12-0ubuntu0.20.04.1) |
 | SpatiaLite               |  5.1.0                                 |
+| QWT                      |  6.1.6                                 |
+| QScintilla2              |  2.13.4                                |
 | rasterio                 |  1.3.9                                 |
 | pqkmeans                 |  1.0.6                                 |
 | cmake                    |  3.28.2                                |
 | gcc                      |  9.4.0                                 |
 | g++                      |  9.4.0                                 |
-| QWT                      |  6.1.6                                 |
-| QScintilla2              |  2.13.4                                |
 | OS                       |  Ubuntu 20.04                          |
 
 ### References:
